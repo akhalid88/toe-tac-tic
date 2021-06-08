@@ -1,9 +1,9 @@
 import "./square.css";
 
-function Square(props) {
+function Square({value, onClick}) {
 	return (
-		<button className="square">
-			{props.pos}
+		<button className="square" onClick={onClick}>
+			{value}
 		</button>
 	)
 }
