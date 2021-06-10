@@ -5,9 +5,7 @@ import { useState } from 'react';
 
 function App() {
   const [squares, setSquares] = useState(Array(9).fill(null));
-  // const onCellClick = () => {
-  //   alert();
-  // }
+  const [currentPlayer, setCurrentPlayer] = useState('X');
 
   const renderSquares = (i) => {
     return (
@@ -15,8 +13,13 @@ function App() {
         value={squares[i]}
         onClick={() => {
           const nextSquares = squares.slice();
-          nextSquares[i] = 'X';
+          nextSquares[i] = currentPlayer;
           setSquares(nextSquares);
+          if (currentPlayer === 'X') {
+            setCurrentPlayer('O');
+          } else {
+            setCurrentPlayer('X');
+          }
         }}
       >
       </Square>
