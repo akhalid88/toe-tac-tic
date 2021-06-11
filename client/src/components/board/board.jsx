@@ -1,10 +1,10 @@
 import "./board.css";
 
 function Board(props) {
-	const nextPlayer = 'Next Player: X';
+	
 	return (
 		<div>
-			<div className="status">{nextPlayer}</div>
+			
 			<div className="board-row">
 				{props.renderSquares(1)}
 				{props.renderSquares(2)}

@@ -2,6 +2,7 @@
   clear: both;
   content: "";
   display: table;
+  margin-left: 10px;
 }
 
 .status {
