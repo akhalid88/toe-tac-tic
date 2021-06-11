@@ -6,19 +6,19 @@ function Board(props) {
 		<div>
 			
 			<div className="board-row">
+				{props.renderSquares(0)}
 				{props.renderSquares(1)}
 				{props.renderSquares(2)}
-				{props.renderSquares(3)}
 			</div>
 			<div className="board-row">
+				{props.renderSquares(3)}
 				{props.renderSquares(4)}
 				{props.renderSquares(5)}
-				{props.renderSquares(6)}
 			</div>
 			<div className="board-row">
+				{props.renderSquares(6)}
 				{props.renderSquares(7)}
 				{props.renderSquares(8)}
-				{props.renderSquares(9)}
 			</div>
 		</div>
 	)
