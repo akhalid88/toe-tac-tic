@@ -1,13 +1,14 @@
 import './App.css';
 import Board from "./components/board/board";
 import Square from "./components/square/square";
+import Restart from "./components/restart/restart";
 import { useState, useEffect } from 'react';
 
 function App() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
   const [winner, setWinner] = useState("");
-  const currentPlayer = `Current Player: ${isXNext ? "X" : "O"}`;
+  const nextPlayer = isXNext ? "X" : "O";
 
   useEffect(() => {
     calcWinner();
@@ -19,16 +20,30 @@ function App() {
       <Square
         value={squares[i]}
         onClick={() => {
-          const nextSquares = squares.slice();
-          nextSquares[i] = isXNext ? "X" : "O";
-          setSquares(nextSquares);
-          setIsXNext(!isXNext);
+          console.log(squares[i])
+          if (squares[i] == null || winner == null) {
+            const nextSquares = squares.slice();
+            nextSquares[i] = nextPlayer;
+            setSquares(nextSquares);
+            setIsXNext(!isXNext);
+          }
         }}
       >
       </Square>
     )
   }
 
+  const renderRestart = () => {
+    return (
+      <Restart
+        onClick={() => {
+          setSquares(Array(9).fill(null));
+          setIsXNext(true);
+          setWinner(null);
+        }}
+      />
+    )
+  }
   const calcWinner = () => {
     // console.log("I AM HERE");
     const winningLines = [
@@ -69,24 +84,24 @@ function App() {
     } else if (isBoardFull()) {
       return "Draw!";
     } else {
-      return "Next player: " + (isXNext ? "X" : "O");
+      return "Next Player: " + nextPlayer;
     }
   }
+
 
 
   return (
     <div className="container">
       <div className="game">
-        <div className="status">{currentPlayer}
-          <div className="game-board">
-            <Board
-              renderSquares={renderSquares}
-              isXNext={isXNext}
-            />
-          </div>
+        <div className="game-board">
+          <Board
+            renderSquares={renderSquares}
+            isXNext={isXNext}
+          />
         </div>
-        <div className="game-info">
-          {getStatus()}
+        <div className="stats">
+          <div className="game-info">{getStatus()}</div>
+          <div className="restart-button">{renderRestart()}</div>
         </div>
       </div>
     </div>

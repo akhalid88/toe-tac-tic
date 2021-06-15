@@ -1,6 +1,6 @@
 import "./square.css";
 
-function Square({value, onClick}) {
+function Square({ value, onClick }) {
 	return (
 		<button className="square" onClick={onClick}>
 			{value}
