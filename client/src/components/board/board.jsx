@@ -4,7 +4,6 @@ function Board(props) {
 	
 	return (
 		<div>
-			
 			<div className="board-row">
 				{props.renderSquares(0)}
 				{props.renderSquares(1)}

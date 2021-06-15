@@ -22,7 +22,6 @@ function App() {
           const nextSquares = squares.slice();
           nextSquares[i] = isXNext ? "X" : "O";
           setSquares(nextSquares);
-          // calcWinner(squares);
           setIsXNext(!isXNext);
         }}
       >
@@ -31,7 +30,7 @@ function App() {
   }
 
   const calcWinner = () => {
-    console.log("I AM HERE");
+    // console.log("I AM HERE");
     const winningLines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -45,7 +44,7 @@ function App() {
 
     for (let i = 0; i < winningLines.length; i++) {
       const [a, b, c] = winningLines[i];
-      console.log(squares[a], squares[b], squares[c])
+      // console.log(squares[a], squares[b], squares[c])
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         // if(squares[a] === squares[b] ===squares[c])
         setWinner(squares[a])
@@ -54,6 +53,26 @@ function App() {
     }
     return null;
   }
+
+  const isBoardFull = () => {
+    for (let i = 0; i < squares.length; i++) {
+      if (squares[i] == null) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  const getStatus = () => {
+    if (winner) {
+      return "Winner: " + winner;
+    } else if (isBoardFull()) {
+      return "Draw!";
+    } else {
+      return "Next player: " + (isXNext ? "X" : "O");
+    }
+  }
+
 
   return (
     <div className="container">
@@ -67,8 +86,7 @@ function App() {
           </div>
         </div>
         <div className="game-info">
-          <div>Winner: {winner}</div>
-          <ol></ol>
+          {getStatus()}
         </div>
       </div>
     </div>
