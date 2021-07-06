@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     calcWinner();
-  }, [squares]);
+  }, []);
 
 
   const renderSquares = (i) => {
